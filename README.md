@@ -28,13 +28,6 @@ AppHub is a centralized platform for managing, showcasing, and downloading stude
 
 ## 🚀 Getting Started
 
-### 🔹 Backend (Flask)
-
-```bash
-cd apphub_Python
-pip install -r requirements.txt
-python app.py
-```
 ### 🔹 Frontend (Flutter)
 
 ```bash
@@ -44,3 +37,12 @@ flutter run
 ```
 #### Or
 #### Download from release 
+
+### 🔹 Backend (Flask)
+
+```bash
+cd apphub_Python
+pip install -r requirements.txt
+python app.py
+```
+
