@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Approval Panel</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Admin Approval Panel</h1>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>App Name</th>
+                    <th>Description</th>
+                    <th>Features</th>
+                    <th>Updated Version</th>
+                    <th>Category</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="app-table-body">
+                <!-- App submissions will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        async function fetchApps() {
+            const response = await fetch('/pending_apps');
+            const data = await response.json();
+            
+            const appTableBody = document.getElementById('app-table-body');
+            appTableBody.innerHTML = '';
+
+            data.apps.forEach(app => {
+                appTableBody.innerHTML += `
+                    <tr>
+                        <td>${app.app_name}</td>
+                        <td>${app.description}</td>
+                        <td>${app.features}</td>
+                        <td>
+                         ${app.is_update === 0 ? 'No' : 'Yes'}
+                        </td>
+                        <td>${app.category}</td>
+                        <td>
+                            <button class="btn btn-success btn-sm" onclick="approveApp('${app.id}')">Approve</button>
+                            <button class="btn btn-danger btn-sm" onclick="rejectApp('${app.id}')">Reject</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        async function approveApp(appId) {
+            await fetch('/approve_app', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ app_id: appId })
+            });
+            fetchApps();
+        }
+
+        async function rejectApp(appId) {
+            await fetch('/reject_app', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id: appId })
+            });
+            fetchApps();
+        }
+
+        fetchApps();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

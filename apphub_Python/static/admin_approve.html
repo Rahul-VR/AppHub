@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin App Approval</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Admin App Approval</h1>
+        <div id="app-list" class="mt-4"></div>
+    </div>
+
+    <script>
+        async function fetchPendingApps() {
+            try {
+                const response = await fetch('http://192.168.1.36:5000/pending_apps');
+                const data = await response.json();
+                if (data.success) {
+                    renderAppList(data.apps);
+                } else {
+                    alert('Failed to fetch apps');
+                }
+            } catch (error) {
+                console.error('Error fetching apps:', error);
+            }
+        }
+
+        function renderAppList(apps) {
+            const appList = document.getElementById('app-list');
+            appList.innerHTML = '';
+            apps.forEach(app => {
+                appList.innerHTML += `
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${app.app_name}</h5>
+                            <p class="card-text">${app.description}</p>
+                            <button class="btn btn-success" onclick="approveApp('${app.app_id}')">Approve</button>
+                            <button class="btn btn-danger" onclick="rejectApp('${app.app_id}')">Reject</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        async function approveApp(appId) {
+            await handleAppApproval(appId, true);
+        }
+
+        async function rejectApp(appId) {
+            await handleAppApproval(appId, false);
+        }
+
+        async function handleAppApproval(appId, isApproved) {
+            try {
+                const response = await fetch('http://192.168.1.36:5000/approve_app', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ app_id: appId, approved: isApproved })
+                });
+                const data = await response.json();
+                alert(data.message);
+                fetchPendingApps();
+            } catch (error) {
+                console.error('Error approving/rejecting app:', error);
+            }
+        }
+
+        window.onload = fetchPendingApps;
+    </script>
+</body>
+</html>

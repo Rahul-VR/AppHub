@@ -1,0 +1,11 @@
+body {
+  background: linear-gradient(to right, #141e30, #243b55);
+  color: #fff;
+}
+.card {
+  background-color: #1f1f1f;
+  border: none;
+}
+.card h3 {
+  color: #f8f9fa;
+}
