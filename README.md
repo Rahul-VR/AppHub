@@ -35,7 +35,7 @@ cd apphub_Flutter
 flutter pub get
 flutter run
 ```
-#### Or
+#### OR
 #### Download from release 
 
 ### 🔹 Backend (Flask)
@@ -46,3 +46,13 @@ pip install -r requirements.txt
 python app.py
 ```
 
+### 🔹 Warning
+
+Ensure your backend server is running at:
+```bash
+http://192.168.1.36:5000
+```
+
+OR
+
+Update all API request URLs in your Flutter (.dart) and Flask (app.py) files to match your current server IP address.
