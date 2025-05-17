@@ -66,8 +66,8 @@ Update all API request URLs in your Flutter (.dart) and Flask (app.py) files to 
 ## 🖼️ Screenshots
 
 <p align="center" style="padding:0; margin:0;">
-  <img src="https://github.com/user-attachments/assets/b483df47-eaf3-4005-8dad-eda044a82a16" width="200" style="margin:0; padding:0;"/>
-  <img src="https://github.com/user-attachments/assets/121805d2-d449-426c-a43e-b17f55e0a513" width="200" style="margin:0; padding:0;"/>
-  <img src="https://github.com/user-attachments/assets/f972a91f-84ae-49a2-9d8b-d301e4a4d380" width="200" style="margin:0; padding:0;"/>
-  <img src="https://github.com/user-attachments/assets/adc43e58-4e66-456f-b545-fdc65bf9068c" width="200" style="margin:0; padding:0;"/>
+![Image](https://github.com/user-attachments/assets/93485e6d-463e-4b48-b1c2-1e12af84974f)
+![Image](https://github.com/user-attachments/assets/58e1a452-c88c-4058-88a8-28fcafc4a42d)
+![Image](https://github.com/user-attachments/assets/1f8594fc-d1fd-4721-93ab-e8acb2b201bd)
+![Image](https://github.com/user-attachments/assets/116dae68-bff9-4df5-97cb-cd471dd7c27c)
 </p>
