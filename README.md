@@ -45,6 +45,10 @@ cd apphub_Python
 pip install -r requirements.txt
 python app.py
 ```
+To login as administrative
+```bash
+http://192.168.1.36:5000/admin_dashboard
+```
 
 ### 🔹 Warning
 
@@ -56,3 +60,7 @@ http://192.168.1.36:5000
 OR
 
 Update all API request URLs in your Flutter (.dart) and Flask (app.py) files to match your current server IP address.
+
+---
+
+## 🖼️ Screenshots
